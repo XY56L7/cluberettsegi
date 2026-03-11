@@ -1,0 +1,388 @@
+// ——— Blackboard + handwritten worksheet
+// Board: classic green, chalk texture, chalk-dust text. Card: paper texture, handwriting font.
+
+$board: #243d30;
+$board-dark: #1a3026;
+$board-frame: #3d2e1f;
+$chalk: #e8e6e0;
+$chalk-dim: rgba(232, 230, 224, 0.82);
+$chalk-yellow: #f0e6a8;
+$sheet: #f8f5ed;
+$sheet-line: #e8e2d4;
+$ink: #2a2824;
+$link: #2d5a7b;
+$link-hover: #1e4260;
+
+// Chalk dust effect (soft halo + slight shadow)
+$chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15);
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $board;
+  position: relative;
+}
+
+// Blackboard texture (noise overlay)
+.layout::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem 1rem 3rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+// Worksheet: paper texture + handwritten typography
+.main-inner {
+  width: 100%;
+  max-width: 1280px;
+  background: $sheet;
+  background-image: linear-gradient($sheet-line 1px, transparent 1px);
+  background-size: 100% 26px;
+  background-position: 0 4px;
+  border: 2px solid #ddd6c8;
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  padding: 3rem 3.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+// Tape corners
+.main-inner::before,
+.main-inner::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 16px;
+  background: rgba(220, 210, 190, 0.7);
+  top: 14px;
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.main-inner::before { left: 24px; transform: rotate(-14deg); }
+.main-inner::after { right: 24px; transform: rotate(14deg); }
+
+// Handwritten: small label
+.kicker {
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #6b6560;
+  margin: 0 0 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.under-development {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $ink;
+  text-align: center;
+  margin: 0;
+  padding: 2rem 0;
+}
+
+// Handwritten: main title
+.page-title {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $ink;
+  margin: 0 0 1.25rem;
+  line-height: 1.2;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid $sheet-line;
+}
+
+// ——— Navbar: chalkboard + chalk writing
+.navbar {
+  background: $board-dark;
+  padding: 1rem 1.25rem;
+  border-bottom: 4px solid $board-frame;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: $chalk;
+  text-decoration: none;
+  text-shadow: $chalk-shadow;
+}
+
+.brand:hover {
+  color: $chalk-yellow;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 10px rgba(240, 230, 168, 0.3);
+}
+
+.dropdown-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $chalk-dim;
+  text-shadow: $chalk-shadow;
+  letter-spacing: 0.02em;
+}
+
+.dropdown {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.25);
+  color: $chalk;
+  border: 2px solid rgba(232, 230, 224, 0.3);
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 160px;
+  border-radius: 0;
+  text-shadow: $chalk-shadow;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e8e6e0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+.dropdown:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+  border-color: rgba(240, 230, 168, 0.5);
+  color: $chalk-yellow;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: $chalk-yellow;
+  box-shadow: 0 0 0 2px rgba(240, 230, 168, 0.25);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-end;
+}
+
+// ——— Table: handwritten headers, readable body
+.table-wrap {
+  overflow-x: auto;
+}
+
+.exam-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.exam-table th,
+.exam-table td {
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid $sheet-line;
+}
+
+.exam-table thead th {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: $ink;
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 2px solid #ccc4b4;
+}
+
+.exam-table tbody {
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: $ink;
+}
+
+.exam-table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.exam-table .link {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: $link;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 90, 123, 0.35);
+}
+
+.exam-table .link:hover {
+  color: $link-hover;
+  border-bottom-color: $link-hover;
+}
+
+.exam-table .no-source {
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: #666;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.intro-text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.95rem;
+  color: $ink;
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+}
+
+.intro-note {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.section-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $ink;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.section-title:first-of-type {
+  margin-top: 0;
+}
+
+// Digitális kultúra: 7 columns, title + file link per cell
+.exam-table--digital .period-cell {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.exam-table--digital thead th {
+  font-size: 1rem;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.exam-table--digital td {
+  vertical-align: top;
+}
+
+.cell-title {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.exam-table--digital .link {
+  display: inline-block;
+  margin-top: 0.15rem;
+}
+
+// ——— Footer: chalkboard chalk
+.footer {
+  background: $board-dark;
+  padding: 1rem 1.25rem;
+  margin-top: auto;
+  border-top: 4px solid $board-frame;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 1rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  color: $chalk-dim;
+  text-shadow: $chalk-shadow;
+}
+
+// ——— Responsive
+@media (max-width: 640px) {
+  .navbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brand {
+    font-size: 1.45rem;
+  }
+
+  .filters {
+    justify-content: stretch;
+  }
+
+  .dropdown-group {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dropdown {
+    min-width: 0;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .main-inner {
+    padding: 2rem 1.75rem;
+    background-size: 100% 24px, 6px 100%;
+  }
+
+  .main-inner::before,
+  .main-inner::after {
+    width: 26px;
+    height: 13px;
+    top: 10px;
+  }
+
+  .main-inner::before { left: 16px; }
+  .main-inner::after { right: 16px; }
+
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .kicker {
+    font-size: 1.2rem;
+  }
+
+  .exam-table thead th {
+    font-size: 1.1rem;
+  }
+
+  .exam-table th,
+  .exam-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .exam-table .link {
+    font-size: 1rem;
+  }
+}
