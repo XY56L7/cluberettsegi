@@ -46,7 +46,13 @@ export class App {
 
   readonly showUnderDevelopment = computed(() => {
     const s = this.selectedSubject();
-    return s === 'matek' || s === 'fizika' || s === 'agazati-informatika';
+    const level = this.selectedLevel();
+    return (
+      s === 'matek' ||
+      s === 'fizika' ||
+      s === 'agazati-informatika' ||
+      (s === 'informatika' && level === 'kozep')
+    );
   });
 
   readonly isKozep = computed(() => this.selectedLevel() === 'kozep');

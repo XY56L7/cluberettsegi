@@ -49,18 +49,18 @@
           <table class="exam-table exam-table--digital">
             <thead>
               <tr>
-                <th>Év</th>
+                <th class="col-period">Év</th>
                 @for (col of digitalCultureColumns(); track col.key) {
-                  <th>{{ col.label }}</th>
+                  <th [class]="'col-' + col.key">{{ col.label }}</th>
                 }
               </tr>
             </thead>
             <tbody>
               @for (row of digitalCultureRows(); track row.period) {
                 <tr>
-                  <td class="period-cell">{{ row.period }}</td>
+                  <td class="period-cell col-period">{{ row.period }}</td>
                   @for (col of digitalCultureColumns(); track col.key) {
-                    <td>
+                    <td [class]="'col-' + col.key">
                       @if (row[col.key]; as cell) {
                         <span class="cell-title">{{ cell.title }}</span>
                         @if (cell.fileUrl) {
@@ -85,18 +85,18 @@
           <table class="exam-table exam-table--digital">
             <thead>
               <tr>
-                <th>Év</th>
+                <th class="col-period">Év</th>
                 @for (col of informatikaColumns(); track col.key) {
-                  <th>{{ col.label }}</th>
+                  <th [class]="'col-' + col.key">{{ col.label }}</th>
                 }
               </tr>
             </thead>
             <tbody>
               @for (row of informatikaRows(); track row.period) {
                 <tr>
-                  <td class="period-cell">{{ row.period }}</td>
+                  <td class="period-cell col-period">{{ row.period }}</td>
                   @for (col of informatikaColumns(); track col.key) {
-                    <td>
+                    <td [class]="'col-' + col.key">
                       @if (row[col.key]; as cell) {
                         <span class="cell-title">{{ cell.title }}</span>
                         @if (cell.fileUrl) {

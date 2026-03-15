@@ -43,7 +43,7 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
   z-index: 1;
 }
 
-// Worksheet: paper texture + handwritten typography
+// Worksheet: paper texture + handwritten typography (kártya jobban kiemelkedik)
 .main-inner {
   width: 100%;
   max-width: 1280px;
@@ -51,10 +51,11 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
   background-image: linear-gradient($sheet-line 1px, transparent 1px);
   background-size: 100% 26px;
   background-position: 0 4px;
-  border: 2px solid #ddd6c8;
+  border: 3px solid rgba(36, 61, 48, 0.35);
   box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(36, 61, 48, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   padding: 3rem 3.5rem;
   position: relative;
   z-index: 1;
@@ -195,13 +196,14 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
+  border: 2px solid $sheet-line;
 }
 
 .exam-table th,
 .exam-table td {
   padding: 0.6rem 1rem;
   text-align: left;
-  border-bottom: 1px solid $sheet-line;
+  border: 2px solid $sheet-line;
 }
 
 .exam-table thead th {
@@ -210,7 +212,7 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
   font-size: 1.25rem;
   color: $ink;
   background: rgba(0, 0, 0, 0.03);
-  border-bottom: 2px solid #ccc4b4;
+  border: 2px solid $sheet-line;
 }
 
 .exam-table tbody {
@@ -256,6 +258,11 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
   font-size: 0.85rem;
   color: #555;
   margin: 0 0 1.5rem;
+  padding: 0.75rem 1rem 0.75rem 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid $board;
+  background: rgba(36, 61, 48, 0.06);
+  border-radius: 0 4px 4px 0;
   line-height: 1.5;
   font-style: italic;
 }
@@ -263,13 +270,68 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
 .section-title {
   font-family: 'Caveat', cursive;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: $ink;
   margin: 1.5rem 0 0.75rem;
+  padding-top: 1rem;
+  border-top: 4px solid $sheet-line;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid $sheet-line;
 }
 
 .section-title:first-of-type {
   margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+// ——— Oszlopok színezése (halvány tónusok)
+.exam-table--digital .col-period,
+.exam-table--digital th.col-period {
+  background: rgba(180, 160, 100, 0.18);
+}
+
+.exam-table--digital .col-szoveg,
+.exam-table--digital th.col-szoveg {
+  background: rgba(245, 240, 228, 0.9);
+}
+
+.exam-table--digital .col-prezentacioGrafika,
+.exam-table--digital th.col-prezentacioGrafika {
+  background: rgba(200, 220, 240, 0.35);
+}
+
+.exam-table--digital .col-weblap,
+.exam-table--digital th.col-weblap {
+  background: rgba(190, 215, 235, 0.35);
+}
+
+.exam-table--digital .col-tablazat,
+.exam-table--digital th.col-tablazat {
+  background: rgba(200, 230, 210, 0.35);
+}
+
+.exam-table--digital .col-adatbazis,
+.exam-table--digital th.col-adatbazis {
+  background: rgba(215, 205, 230, 0.35);
+}
+
+.exam-table--digital .col-programozas,
+.exam-table--digital th.col-programozas {
+  background: rgba(245, 225, 200, 0.4);
+}
+
+// Alternáló sorok (enyhe sötétítés)
+.exam-table--digital tbody tr:nth-child(even) td {
+  position: relative;
+}
+
+.exam-table--digital tbody tr:nth-child(even) td::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.04);
+  pointer-events: none;
 }
 
 // Digitális kultúra: 7 columns, title + file link per cell
@@ -280,6 +342,7 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
 
 .exam-table--digital thead th {
   font-size: 1rem;
+  font-weight: 800;
   white-space: normal;
   word-break: break-word;
 }
@@ -296,6 +359,13 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
 .exam-table--digital .link {
   display: inline-block;
   margin-top: 0.15rem;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+.exam-table--digital .link:hover {
+  background: rgba(45, 90, 123, 0.12);
+  color: $link-hover;
 }
 
 // ——— Footer: chalkboard chalk
