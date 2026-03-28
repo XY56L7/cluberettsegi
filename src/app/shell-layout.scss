@@ -112,7 +112,6 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
 .navbar {
   background: $board-dark;
   padding: 1rem 1.25rem;
-  border-bottom: 4px solid $board-frame;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
@@ -222,6 +221,28 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
 
 .exam-table tbody tr:hover {
   background: rgba(0, 0, 0, 0.02);
+}
+
+.exam-table tbody tr.row-megoldas-video {
+  background: rgba(36, 61, 48, 0.04);
+}
+
+.exam-table tbody tr.row-megoldas-video:hover {
+  background: rgba(36, 61, 48, 0.07);
+}
+
+.megoldas-video-label {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #4a5c52;
+  vertical-align: middle;
+}
+
+.megoldas-video-cell {
+  color: #888;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 .exam-table .link {
@@ -391,6 +412,69 @@ $chalk-shadow: 0 0 3px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.2
   font-weight: 600;
   color: $chalk-dim;
   text-shadow: $chalk-shadow;
+}
+
+// ——— Landing
+.landing-lead {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.05rem;
+  color: $ink;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+  max-width: 52rem;
+}
+
+.landing-lead:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.landing-card {
+  border: 2px solid $sheet-line;
+  padding: 1.25rem 1.35rem;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.landing-card-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: $ink;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid $sheet-line;
+}
+
+.landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.landing-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: $link;
+  text-decoration: none;
+  border: 2px solid rgba(45, 90, 123, 0.45);
+  background: rgba(45, 90, 123, 0.06);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.landing-btn:hover {
+  color: $link-hover;
+  border-color: $link-hover;
+  background: rgba(45, 90, 123, 0.12);
 }
 
 // ——— Responsive

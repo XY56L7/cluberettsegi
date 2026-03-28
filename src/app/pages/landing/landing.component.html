@@ -1,0 +1,43 @@
+<div class="layout">
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" routerLink="/">Érettségi feladatok</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="main-inner">
+      <p class="kicker">Üdv</p>
+      <h1 class="page-title">Érettségi feladatok egy helyen</h1>
+
+      <p class="landing-lead">
+        Ezen az oldalon a matematika, a fizika, a digitális kultúra (informatika) és az ágazati informatika érettségihez kapcsolódó kitűzött feladatokat gyűjtöttük össze. A listák évenként rendezve segítenek eligazodni a korábbi tételek és források között.
+      </p>
+      <p class="landing-lead">
+        A digitális kultúra emelt szintű oldalán külön táblázatban szerepelnek a digitális kultúra és az informatika feladatok, témakörönként; a többi tárgy esetén egy táblázatban találod a PDF és forrás linkeket (ahol elérhetők).
+      </p>
+      <p class="landing-lead">
+        Válassz tárgyat és szintet – minden szekció saját, megosztható webcímmel rendelkezik.
+      </p>
+
+      <div class="landing-grid">
+        @for (sub of subjects; track sub.id) {
+          <article class="landing-card">
+            <h2 class="landing-card-title">{{ sub.label }}</h2>
+            <div class="landing-actions">
+              @for (lev of sub.levels; track lev.id) {
+                <a class="landing-btn" [routerLink]="['/', sub.slug, lev.id]">{{ lev.label }}</a>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Érettségi feladatok – Matematika, Fizika, Digitális kultúra, Ágazati informatika</p>
+    </div>
+  </footer>
+</div>
